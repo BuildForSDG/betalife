@@ -20,13 +20,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'audiences'
   });
 
-  Audience.associate = (models) => {
-    Audience.hasMany(models.skills, {
-      foreignKey: 'audience_id',
-      as: 'skills',
-      onDelete: 'CASCADE'
-    });
-  };
-
   return Audience;
 };

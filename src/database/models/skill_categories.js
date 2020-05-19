@@ -20,13 +20,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'skill_categories'
   });
 
-  Category.associate = (models) => {
-    Category.hasMany(models.skills, {
-      foreignKey: 'category_id',
-      as: 'skills',
-      onDelete: 'CASCADE'
-    });
-  };
-
   return Category;
 };

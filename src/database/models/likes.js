@@ -22,13 +22,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'likes'
   });
 
-  Like.associate = (models) => {
-    Like.belongsTo(models.sponsor, {
-      foreignKey: 'sponsor_id',
-      as: 'skills',
-      onDelete: 'CASCADE'
-    });
-  };
-
   return Like;
 };

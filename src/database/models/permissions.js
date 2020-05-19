@@ -16,13 +16,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'permissions'
   });
 
-  Permision.associate = (models) => {
-    Permision.hasMany(models.admin_permisions, {
-      foreignKey: 'permision_id',
-      as: 'admin_permisions',
-      onDelete: 'CASCADE'
-    });
-  };
-
   return Permision;
 };

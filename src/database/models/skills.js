@@ -56,37 +56,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'skills'
   });
 
-  Skill.associate = (models) => {
-    Skill.hasMany(models.interest, {
-      foreignKey: 'skill_id',
-      as: 'interest',
-      onDelete: 'CASCADE'
-    });
-
-    Skill.hasMany(models.skill_sponsors, {
-      foreignKey: 'skill_id',
-      as: 'sponsors',
-      onDelete: 'CASCADE'
-    });
-
-    Skill.belongsTo(models.audiences, {
-      foreignKey: 'audience_id',
-      as: 'audience',
-      onDelete: 'CASCADE'
-    });
-
-    Skill.belongsTo(models.skill_categories, {
-      foreignKey: 'category_id',
-      as: 'categories',
-      onDelete: 'CASCADE'
-    });
-
-    Skill.belongsTo(models.locations, {
-      foreignKey: 'location_id',
-      as: 'locations',
-      onDelete: 'CASCADE'
-    });
-  };
-
   return Skill;
 };

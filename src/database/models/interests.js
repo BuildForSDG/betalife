@@ -22,13 +22,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'interests'
   });
 
-  Interest.associate = (models) => {
-    Interest.belongsTo(models.skills, {
-      foreignKey: 'skill_id',
-      as: 'skills',
-      onDelete: 'CASCADE'
-    });
-  };
-
   return Interest;
 };

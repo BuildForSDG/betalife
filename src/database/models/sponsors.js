@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
+      unique: true,
+      validate: {
+        isEmail: true
+      },
       allowNull: false
     },
     phone_no: {
@@ -47,14 +51,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     tableName: 'sponsors'
   });
-
-  Sponsor.associate = (models) => {
-    Sponsor.hasMany(models.likes, {
-      foreignKey: 'sponsor_id',
-      as: 'likes',
-      onDelete: 'CASCADE'
-    });
-  };
 
   return Sponsor;
 };

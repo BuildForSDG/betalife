@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
+      unique: true,
+      validate: {
+        isEmail: true
+      },
       allowNull: false
     },
     phone_no: {
@@ -47,14 +51,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     tableName: 'admins'
   });
-
-  Admin.associate = (models) => {
-    Admin.hasMany(models.admin_permisions, {
-      foreignKey: 'admin_id',
-      as: 'admin_permisions',
-      onDelete: 'CASCADE'
-    });
-  };
 
   return Admin;
 };

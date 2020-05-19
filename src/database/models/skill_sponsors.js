@@ -18,13 +18,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'skill_sponsors'
   });
 
-  SkillSponsor.associate = (models) => {
-    SkillSponsor.belongsTo(models.skills, {
-      foreignKey: 'skill_id',
-      as: 'skills',
-      onDelete: 'CASCADE'
-    });
-  };
-
   return SkillSponsor;
 };

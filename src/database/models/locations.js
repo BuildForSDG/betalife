@@ -28,13 +28,5 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'locations'
   });
 
-  Location.associate = (models) => {
-    Location.hasMany(models.skills, {
-      foreignKey: 'location_id',
-      as: 'skills',
-      onDelete: 'CASCADE'
-    });
-  };
-
   return Location;
 };
