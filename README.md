@@ -36,7 +36,6 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 - Run `npm install` or `yarn install` to get started. We'll assume you are using Yarn.
 - Run `touch .env` to make `.env` file
 - Create pg database and upate `.env` file 
-- Run `npx sequelize-cli db:migrate`
 - Run `npm run dev` to start app `nodemon is required`
 - Install additional dependencies: `yarn add <dependency-name> [-D]`
 - Run tests: `yarn test`
