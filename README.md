@@ -1,5 +1,6 @@
 This app matches users with existing opportunities in skill training.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bd0957908c1141eca35c54a1a10b7bc6)](https://app.codacy.com/gh/BuildForSDG/betalife?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/betalife&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://img.shields.io/badge/Code%20Quality-D-red)](https://img.shields.io/badge/Code%20Quality-D-red)
 
 
