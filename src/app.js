@@ -1,3 +1,11 @@
-const app = async () => '#BuildforSDG';
+const express = require('express');
 
-export default app;
+const app = express();
+const db = require('./database/models');
+const api = require('./api');
+
+app.use('/api', api);
+
+app.listen(8000, () => {
+  db.sequelize.sync();
+});
