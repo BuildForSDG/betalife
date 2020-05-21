@@ -2,7 +2,10 @@
   "name": "betalife",
   "version": "0.0.1",
   "description": "A boilerplate for starting js code",
-  "keywords": ["betalife", "boilerplate"],
+  "keywords": [
+    "betalife",
+    "boilerplate"
+  ],
   "private": false,
   "main": "./src/index.js",
   "directories": {
@@ -75,6 +78,8 @@
     }
   },
   "lint-staged": {
-    "*.js": ["eslint --fix"]
+    "*.js": [
+      "eslint --fix"
+    ]
   }
 }
