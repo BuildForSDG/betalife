@@ -5,17 +5,18 @@ module.exports = {
     node: true,
     jest: true
   },
-  extends: ['airbnb-base'],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
-  },
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
+  extends: ['airbnb-base', 'plugin:jest/recommended', 'plugin:prettier/recommended'],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
+  },
   rules: {
-    'comma-dangle': ['error', 'never'],
-    'no-param-reassign': ['error', { props: false }]
+    'no-console': 'off',
+    'no-param-reassign': ['error', { props: false }],
+    'no-use-before-define': 'off'
   }
 };
