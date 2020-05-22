@@ -1,22 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
-  const Audience = sequelize.define('audiences', {
-    audience_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 'nextval(audiences_audience_id_seq::regclass)',
-      primaryKey: true
+  const audiences = sequelize.define(
+    'audiences',
+    {
+      audience_name: DataTypes.STRING,
+      audience_type: DataTypes.STRING
     },
-    audience_name: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    audience_type: {
-      type: DataTypes.STRING,
-      allowNull: true
-    }
-  }, {
-    tableName: 'audiences'
-  });
-
-  return Audience;
+    {}
+  );
+  return audiences;
 };

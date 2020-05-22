@@ -2,10 +2,7 @@
   "name": "betalife",
   "version": "0.0.1",
   "description": "A boilerplate for starting js code",
-  "keywords": [
-    "betalife",
-    "boilerplate"
-  ],
+  "keywords": ["betalife", "boilerplate"],
   "private": false,
   "main": "./src/index.js",
   "directories": {
@@ -48,7 +45,6 @@
     "pg-hstore": "^2.3.3",
     "prettier": "^2.0.5",
     "sequelize": "^5.21.10",
-    "sequelize-auto-migrations": "^1.0.3",
     "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
@@ -79,8 +75,6 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix"
-    ]
+    "*.js": ["eslint --fix"]
   }
 }

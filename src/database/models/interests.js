@@ -1,24 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
-  const Interest = sequelize.define('interests', {
-    badge: {
-      type: DataTypes.STRING,
-      allowNull: false
+  const interests = sequelize.define(
+    'interests',
+    {
+      userId: DataTypes.INTEGER,
+      skillId: DataTypes.INTEGER,
+      sponsorId: DataTypes.INTEGER,
+      enabled: DataTypes.INTEGER
     },
-    skill_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    sponsor_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    enabled: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
-  }, {
-    tableName: 'interests'
-  });
-
-  return Interest;
+    {}
+  );
+  return interests;
 };
