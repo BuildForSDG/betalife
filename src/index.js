@@ -1,7 +1,7 @@
+import './config/env';
 import http from 'http';
-import app from './app';
 
-require('dotenv').config();
+import app from './app';
 
 /**
  * Believe it or not, reading process.env is expensive in NODE.js
