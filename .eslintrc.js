@@ -17,6 +17,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'no-param-reassign': ['error', { props: false }],
-    'no-use-before-define': 'off'
+    'no-use-before-define': 'off',
+    'no-unused-vars': 'warn'
   }
 };
