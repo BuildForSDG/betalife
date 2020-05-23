@@ -1,24 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  const Like = sequelize.define('likes', {
-    badge: {
-      type: DataTypes.STRING,
-      allowNull: false
+  const likes = sequelize.define(
+    'likes',
+    {
+      userId: DataTypes.INTEGER,
+      sponsor_description: DataTypes.TEXT,
+      enabled: DataTypes.INTEGER
     },
-    sponsor_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    sponsor_description: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    enabled: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
-  }, {
-    tableName: 'likes'
-  });
-
-  return Like;
+    {}
+  );
+  return likes;
 };
