@@ -41,129 +41,118 @@ db.Sequelize = Sequelize;
 
 // db associations
 
-db.users = require('./users.js')(sequelize, Sequelize);
-db.super_admins = require('./super_admins.js')(sequelize, Sequelize);
-db.admins = require('./admins.js')(sequelize, Sequelize);
-db.trainees = require('./trainees.js')(sequelize, Sequelize);
-db.permissions = require('./permissions.js')(sequelize, Sequelize);
-db.admin_permissions = require('./admin_permissions.js')(sequelize, Sequelize);
-db.audiences = require('./audiences.js')(sequelize, Sequelize);
-db.interests = require('./interests.js')(sequelize, Sequelize);
-db.likes = require('./likes.js')(sequelize, Sequelize);
-db.locations = require('./locations.js')(sequelize, Sequelize);
-db.skill_categories = require('./skill_categories.js')(sequelize, Sequelize);
-db.skill_sponsors = require('./skill_sponsors.js')(sequelize, Sequelize);
-db.skills = require('./skills.js')(sequelize, Sequelize);
-db.sponsors = require('./sponsors.js')(sequelize, Sequelize);
-db.annoucement = require('./announcement.js')(sequelize, Sequelize);
-db.messages = require('./messages.js')(sequelize, Sequelize);
-db.organizers = require('./organizers.js')(sequelize, Sequelize);
+db.User = require('./users.js')(sequelize, Sequelize);
+db.SuperAdmin = require('./super_admins.js')(sequelize, Sequelize);
+db.Admin = require('./admins.js')(sequelize, Sequelize);
+db.Organizer = require('./organizers.js')(sequelize, Sequelize);
+db.Sponsor = require('./sponsors.js')(sequelize, Sequelize);
+db.Permission = require('./permissions.js')(sequelize, Sequelize);
+db.AdminPermission = require('./admin_permissions.js')(sequelize, Sequelize);
+db.Audience = require('./audiences.js')(sequelize, Sequelize);
+db.Interest = require('./interests.js')(sequelize, Sequelize);
+db.Like = require('./likes.js')(sequelize, Sequelize);
+db.Location = require('./locations.js')(sequelize, Sequelize);
+db.SkillCategory = require('./skill_categories.js')(sequelize, Sequelize);
+db.SkillSponsor = require('./skill_sponsors.js')(sequelize, Sequelize);
+db.Skill = require('./skills.js')(sequelize, Sequelize);
+db.Announcement = require('./announcement.js')(sequelize, Sequelize);
+db.Message = require('./messages.js')(sequelize, Sequelize);
 
-db.admins.hasMany(db.admin_permissions, {
+// ONE-TO-ONE RELATIONSHIPS
+db.User.hasOne(db.SuperAdmin);
+db.User.hasOne(db.Admin);
+db.User.hasOne(db.interests);
+db.User.hasOne(db.likes);
+db.User.hasOne(db.locations);
+db.User.hasOne(db.messages);
+db.User.hasOne(db.Organizer);
+db.User.hasOne(db.Sponsor);
+
+db.Admin.hasMany(db.AdminPermission, {
   as: 'admin_permissions',
   onDelete: 'CASCADE'
 });
-db.permissions.hasMany(db.admin_permissions, {
+db.permissions.hasMany(db.AdminPermission, {
   as: 'admin_permissions',
   onDelete: 'CASCADE'
 });
 
-db.admin_permissions.belongsTo(db.admins, {
+db.AdminPermission.belongsTo(db.admins, {
   foreignKey: 'adminId',
   as: 'admin',
   onDelete: 'CASCADE'
 });
 
-db.admin_permissions.belongsTo(db.permissions, {
+db.AdminPermission.belongsTo(db.permissions, {
   foreignKey: 'permissionId',
   as: 'permission',
   onDelete: 'CASCADE'
 });
 
-db.audiences.hasMany(db.skills, {
+db.Audience.hasMany(db.Skill, {
   as: 'skills',
   onDelete: 'CASCADE'
 });
 
-db.skill_categories.hasMany(db.skills, {
+db.SkillCategory.hasMany(db.Skill, {
   as: 'skills',
   onDelete: 'CASCADE'
 });
 
-db.locations.hasMany(db.skills, {
+db.Location.hasMany(db.Skill, {
   as: 'skills',
   onDelete: 'CASCADE'
 });
 
-db.skills.hasMany(db.interests, {
+db.Skill.hasMany(db.Interest, {
   as: 'interest',
   onDelete: 'CASCADE'
 });
 
-db.skills.hasMany(db.skill_sponsors, {
+db.Skill.hasMany(db.SkillSponsor, {
   as: 'sponsors',
   onDelete: 'CASCADE'
 });
 
-db.sponsors.hasMany(db.likes, {
+db.Sponsor.hasMany(db.Like, {
   as: 'likes',
   onDelete: 'CASCADE'
 });
 
-db.likes.belongsTo(db.sponsors, {
+db.Like.belongsTo(db.Sponsor, {
   foreignKey: 'sponsorId',
   as: 'sponsor',
   onDelete: 'CASCADE'
 });
 
-db.skills.belongsTo(db.audiences, {
+db.Skill.belongsTo(db.Audience, {
   foreignKey: 'audienceId',
   as: 'audience',
   onDelete: 'CASCADE'
 });
 
-db.skills.belongsTo(db.skill_categories, {
+db.Skill.belongsTo(db.SkillCategory, {
   foreignKey: 'categoryId',
   as: 'categories',
   onDelete: 'CASCADE'
 });
 
-db.skills.belongsTo(db.locations, {
+db.Skill.belongsTo(db.Location, {
   foreignKey: 'locationId',
   as: 'locations',
   onDelete: 'CASCADE'
 });
 
-db.skill_sponsors.belongsTo(db.skills, {
+db.SkillSponsor.belongsTo(db.Skill, {
   foreignKey: 'skillId',
   as: 'skills',
   onDelete: 'CASCADE'
 });
 
-db.interests.belongsTo(db.skills, {
+db.Interest.belongsTo(db.Skill, {
   foreignKey: 'skillId',
   as: 'skills',
   onDelete: 'CASCADE'
 });
-
-db.users.hasOne(db.super_admins);
-db.users.hasOne(db.admins);
-db.users.hasOne(db.interests);
-db.users.hasOne(db.likes);
-db.users.hasOne(db.locations);
-db.users.hasOne(db.messages);
-db.users.hasOne(db.organizers);
-db.users.hasOne(db.sponsors);
-db.users.hasOne(db.trainees);
-
-db.super_admins.belongsTo(db.users);
-db.admins.belongsTo(db.users);
-db.interests.belongsTo(db.users);
-db.likes.belongsTo(db.users);
-db.locations.belongsTo(db.users);
-db.messages.belongsTo(db.users);
-db.organizers.belongsTo(db.users);
-db.sponsors.belongsTo(db.users);
-db.trainees.belongsTo(db.users);
 
 module.exports = db;
