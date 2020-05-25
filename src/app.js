@@ -6,8 +6,16 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 
 import api from './api';
+import { sequelize } from './database/models';
 
 const app = express();
+
+if (process.env.NODE_ENV === 'development') {
+  sequelize
+    .authenticate()
+    .then(() => console.log('Connection has been established successfully.'))
+    .catch(error => console.error('Unable to connect to the database:', error));
+}
 
 Sentry.init({ dsn: process.env.SENTRY_DSN });
 
