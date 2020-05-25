@@ -3,15 +3,16 @@ module.exports = {
     return queryInterface.createTable('users', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID
       },
       first_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       last_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       email: {
         type: Sequelize.STRING,
@@ -21,18 +22,30 @@ module.exports = {
         },
         allowNull: false
       },
+      email_verified: { type: Sequelize.DataTypes.INTEGER, defaultValue: 0 },
       password: {
         type: Sequelize.STRING
       },
-      phone_no: {
-        type: Sequelize.STRING
+      phone: {
+        type: Sequelize.STRING,
+        unique: true
       },
+      phone_verified: { type: Sequelize.DataTypes.INTEGER, defaultValue: 0 },
       photo: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          isUrl: true
+        }
       },
+      age_group: { type: Sequelize.DataTypes.STRING },
+      date_of_birth: { type: Sequelize.DataTypes.DATEONLY },
+      sex: { type: Sequelize.DataTypes.STRING },
+      education_level: { type: Sequelize.DataTypes.STRING },
       address: {
         type: Sequelize.STRING
       },
+      city: Sequelize.DataTypes.STRING,
+      state: Sequelize.DataTypes.STRING,
       enabled: {
         type: Sequelize.INTEGER
       },
