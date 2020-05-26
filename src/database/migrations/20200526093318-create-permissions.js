@@ -1,17 +1,15 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('skill_categories', {
+    return queryInterface.createTable('permissions', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID
       },
-      category_type: {
-        type: Sequelize.STRING
-      },
-      category_name: {
-        type: Sequelize.STRING
+      name: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -24,6 +22,6 @@ module.exports = {
     });
   },
   down: queryInterface => {
-    return queryInterface.dropTable('skill_categories');
+    return queryInterface.dropTable('permissions');
   }
 };

@@ -3,21 +3,34 @@ module.exports = {
     return queryInterface.createTable('messages', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        unique: true,
+        type: Sequelize.UUID
       },
-      from_userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+      from: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'users'
+          },
+          key: 'id'
+        }
       },
-      to_userId: {
-        type: Sequelize.INTEGER
+      to: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'users'
+          },
+          key: 'id'
+        }
       },
       title: {
         type: Sequelize.STRING
       },
-      description: {
+      body: {
         type: Sequelize.TEXT
       },
       createdAt: {
