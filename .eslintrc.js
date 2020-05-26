@@ -18,6 +18,9 @@ module.exports = {
     'no-console': 'off',
     'no-param-reassign': ['error', { props: false }],
     'no-use-before-define': 'off',
-    'no-unused-vars': 'warn'
+    'no-unused-vars': 'warn',
+    'import/prefer-default-export': 'off',
+    'import/no-cycle': 'warn',
+    'func-names': 'off'
   }
 };
