@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize';
+import { v4 as uuid } from 'uuid';
 
 import { sequelize } from '../config';
 import { User } from './user';
@@ -10,7 +11,7 @@ export const EventUser = sequelize.define(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: uuid()
     },
     userId: {
       type: DataTypes.UUID,

@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize';
+import { v4 as uuid } from 'uuid';
 
 import { sequelize } from '../config';
 
@@ -8,7 +9,7 @@ export const Announcement = sequelize.define(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: uuid()
     },
     userId: DataTypes.UUID,
     title: DataTypes.STRING,

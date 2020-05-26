@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize';
+import { v4 as uuid } from 'uuid';
 
 import { sequelize } from '../config';
 
@@ -8,7 +9,7 @@ export const SponsorEvent = sequelize.define(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: uuid()
     },
     eventId: { type: DataTypes.UUID, field: 'event_id' },
     sponsorId: { type: DataTypes.UUID, field: 'sponsor_id' },

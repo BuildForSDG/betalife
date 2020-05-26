@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize';
+import { v4 as uuid } from 'uuid';
 
 import { sequelize } from '../config';
 
@@ -8,8 +9,7 @@ export const User = sequelize.define(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
-      unique: true
+      defaultValue: uuid()
     },
     firstName: { type: DataTypes.STRING, field: 'first_name' },
     lastName: { type: DataTypes.STRING, field: 'last_name' },
