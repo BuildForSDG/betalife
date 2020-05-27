@@ -33,6 +33,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "@sentry/node": "^5.15.5",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -42,6 +43,7 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

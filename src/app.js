@@ -62,6 +62,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api', api);
 
+app.use('*', (req, res) => res.status(404).send('route does not exist'));
+
 app.use(Sentry.Handlers.errorHandler());
 
 export default app;
