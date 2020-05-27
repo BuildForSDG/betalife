@@ -17,7 +17,7 @@
     "test:cover": "jest --coverage",
     "build": "babel src --out-dir dist",
     "start": "npm run build & node dist/index.js",
-    "dev": "nodemon --exec babel-node src/index.js"
+    "dev": "babel-watch src/index.js"
   },
   "author": {
     "name": "Build For SDG",
@@ -57,10 +57,10 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
-    "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.5",
     "@types/jest": "^25.2.3",
     "babel-jest": "^25.4.0",
+    "babel-watch": "^7.0.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
@@ -70,7 +70,6 @@
     "husky": "^4.2.5",
     "jest": "^25.4.0",
     "lint-staged": "^10.2.4",
-    "nodemon": "^2.0.4",
     "pretty-quick": "^2.0.1"
   },
   "engines": {
