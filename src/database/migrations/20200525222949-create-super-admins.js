@@ -27,6 +27,6 @@ module.exports = {
     });
   },
   down: queryInterface => {
-    queryInterface.dropTable('super_admins');
+    return queryInterface.dropTable('super_admins');
   }
 };
