@@ -3,10 +3,8 @@ import envConfigs from './config';
 
 const env = process.env.NODE_ENV || 'development';
 const { url, ...config } = envConfigs[env];
-const showLogs = env === 'development' ? console.log : false;
 
 export const sequelize = new Sequelize(url, {
-  logging: showLogs,
   sync: { force: false },
   pool: {
     max: 5,
