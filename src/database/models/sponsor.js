@@ -13,7 +13,7 @@ export const Sponsor = sequelize.define(
       defaultValue: uuid()
     },
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       field: 'user_id',
       references: {
         model: User,

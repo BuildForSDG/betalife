@@ -26,6 +26,15 @@ export const User = sequelize.define(
       field: 'phone_verified',
       defaultValue: 0
     },
+    role: {
+      type: DataTypes.ENUM([
+        'TRAINEE',
+        'SPONSOR',
+        'ORGANISER',
+        'ADMIN',
+        'SUPER_ADMIN'
+      ])
+    },
     photo: DataTypes.STRING,
     ageGroup: { type: DataTypes.STRING, field: 'age_group' },
     dateOfBirth: { type: DataTypes.DATEONLY, field: 'date_of_birth' },
