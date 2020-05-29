@@ -13,8 +13,9 @@
   },
   "scripts": {
     "lint": "pretty-quick --staged && lint-staged",
-    "test": "jest",
+    "test": "node scripts/setup-tests.js --detectOpenHandles --forceExit",
     "test:cover": "jest --coverage",
+    "migrate:test": "npx sequelize-cli db:migrate",
     "build": "babel src --out-dir dist",
     "start": "npm run build & node dist/index.js",
     "dev": "babel-watch src/index.js"
@@ -60,6 +61,7 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.5",
+    "@databases/pg-test": "^2.0.0",
     "@types/jest": "^25.2.3",
     "babel-jest": "^25.4.0",
     "babel-watch": "^7.0.0",
@@ -86,5 +88,14 @@
     "*.js": [
       "eslint --fix"
     ]
+  },
+  "pg": {
+    "test": {
+      "migrationsScript": [
+        "npm",
+        "run",
+        "migrate:test"
+      ]
+    }
   }
 }
