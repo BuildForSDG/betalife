@@ -1,46 +1,87 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return Promise.all([
-      queryInterface.addColumn('users', 'deletedAt', {
-        type: Sequelize.DATE,
-        allowNull: true
-      }),
-      queryInterface.addColumn('events', 'deletedAt', {
-        type: Sequelize.DATE,
-        allowNull: true
-      }),
-      queryInterface.addColumn('messages', 'deletedAt', {
-        type: Sequelize.DATE,
-        allowNull: true
-      }),
-      queryInterface.addColumn('permissions', 'deletedAt', {
-        type: Sequelize.DATE,
-        allowNull: true
-      }),
-      queryInterface.addColumn('skills', 'deletedAt', {
-        type: Sequelize.DATE,
-        allowNull: true
-      }),
-      queryInterface.addColumn('sponsors_events', 'deletedAt', {
-        type: Sequelize.DATE,
-        allowNull: true
-      }),
-      queryInterface.addColumn('subscriptions', 'deletedAt', {
-        type: Sequelize.DATE,
-        allowNull: true
-      })
-    ]);
+  up: async (queryInterface, Sequelize) => {
+    return queryInterface.sequelize.transaction(t => {
+      return Promise.all([
+        queryInterface.addColumn(
+          'users',
+          'deletedAt',
+          {
+            type: Sequelize.DATE,
+            allowNull: true
+          },
+          { transaction: t }
+        ),
+        queryInterface.addColumn(
+          'events',
+          'deletedAt',
+          {
+            type: Sequelize.DATE,
+            allowNull: true
+          },
+          { transaction: t }
+        ),
+        queryInterface.addColumn(
+          'messages',
+          'deletedAt',
+          {
+            type: Sequelize.DATE,
+            allowNull: true
+          },
+          { transaction: t }
+        ),
+        queryInterface.addColumn(
+          'permissions',
+          'deletedAt',
+          {
+            type: Sequelize.DATE,
+            allowNull: true
+          },
+          { transaction: t }
+        ),
+        queryInterface.addColumn(
+          'skills',
+          'deletedAt',
+          {
+            type: Sequelize.DATE,
+            allowNull: true
+          },
+          { transaction: t }
+        ),
+        queryInterface.addColumn(
+          'sponsors_events',
+          'deletedAt',
+          {
+            type: Sequelize.DATE,
+            allowNull: true
+          },
+          { transaction: t }
+        ),
+        queryInterface.addColumn(
+          'subscriptions',
+          'deletedAt',
+          {
+            type: Sequelize.DATE,
+            allowNull: true
+          },
+          { transaction: t }
+        )
+      ]);
+    });
   },
 
-  down: queryInterface => {
-    return Promise.all([
-      queryInterface.removeColumn('users', 'deletedAt'),
-      queryInterface.removeColumn('events', 'deletedAt'),
-      queryInterface.removeColumn('messages', 'deletedAt'),
-      queryInterface.removeColumn('permissions', 'deletedAt'),
-      queryInterface.removeColumn('skills', 'deletedAt'),
-      queryInterface.removeColumn('sponsors_events', 'deletedAt'),
-      queryInterface.removeColumn('subscriptions', 'deletedAt')
-    ]);
+  down: async queryInterface => {
+    return queryInterface.sequelize.transaction(t => {
+      return Promise.all([
+        queryInterface.removeColumn('users', 'deletedAt', { transaction: t }),
+        queryInterface.removeColumn('events', 'deletedAt', { transaction: t }),
+        queryInterface.removeColumn('messages', 'deletedAt', { transaction: t }),
+        queryInterface.removeColumn('permissions', 'deletedAt', { transaction: t }),
+        queryInterface.removeColumn('skills', 'deletedAt', { transaction: t }),
+        queryInterface.removeColumn('sponsors_events', 'deletedAt', {
+          transaction: t
+        }),
+        queryInterface.removeColumn('subscriptions', 'deletedAt', { transaction: t })
+      ]);
+    });
   }
 };
