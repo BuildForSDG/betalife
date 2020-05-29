@@ -6,10 +6,22 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 
 import api from './api';
+import { sequelize } from './database/config';
 
 const app = express();
 
 Sentry.init({ dsn: process.env.SENTRY_DSN });
+
+if (process.env.NODE_ENV === 'development') {
+  sequelize
+    .authenticate()
+    .then(() => console.log('Connection has been established successfully.'))
+    .catch(error => {
+      console.error(error.message);
+      Sentry.captureException(error);
+      process.exit(1);
+    });
+}
 
 app.use(Sentry.Handlers.requestHandler());
 
@@ -49,6 +61,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api', api);
+
+app.use('*', (req, res) => res.status(404).send('route does not exist'));
 
 app.use(Sentry.Handlers.errorHandler());
 

@@ -1,9 +1,12 @@
-const express = require('express');
+import { Router } from 'express';
 
-const router = express.Router();
+import version1Router from './v1';
+import version2Router from './v2';
 
-router.use('/', require('./v1'));
-router.use('/v1', require('./v1'));
-router.use('/v2', require('./v2'));
+const router = Router();
 
-module.exports = router;
+router.use('/', version1Router);
+router.use('/v1', version1Router);
+router.use('/v2', version2Router);
+
+export default router;
