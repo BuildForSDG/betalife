@@ -39,5 +39,6 @@ jobs:
 
         env:
           CI: true
+          NODE_ENV: 'test'
           DATABASE_URL: 'postgres://test-user@localhost:5432/betalifeTestDB'
           ACCESS_TOKEN_SECRET: '|[%$_g:c@K7J#5;WI`Dk`6t/ndEg#AAnibO+.eIK-g{l>Rrwx-c+eW02%C `dFU/'
