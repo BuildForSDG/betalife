@@ -1,11 +1,45 @@
 import { models } from '../../../database/models';
+import { getLoggedInUser } from '../stores/session';
+import { UserProfileSchema } from '../validation/user';
 
 export async function getUserByEmail(email) {
   return models.User.findOne({ where: { email }, raw: true });
 }
 
+export async function getUserById(id) {
+  return models.User.findOne({
+    attributes: { exclude: ['password'] },
+    where: { id },
+    raw: true
+  });
+}
+
 export async function saveUser(data) {
   return models.User.create(data, { raw: true });
+}
+
+export async function updateUserProfile(input) {
+  const { value, error } = UserProfileSchema.validate(input, {
+    abortEarly: false,
+    stripUnknown: true
+  });
+
+  if (error) {
+    throw error;
+  }
+
+  const user = getLoggedInUser();
+
+  const [affectedRow] = await models.User.update(value, {
+    where: { id: user.id },
+    returning: true
+  });
+
+  if (affectedRow !== 1) {
+    throw new Error('update was unsuccessful');
+  }
+
+  return getUserById(user.id);
 }
 
 export async function getRoleID(user) {
