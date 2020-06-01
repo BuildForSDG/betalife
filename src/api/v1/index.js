@@ -11,7 +11,7 @@ import {
 const router = Router();
 
 router.use('/auth', AuthRouter);
-router.use('/admin', ensureLoggedInMiddleware, ensureUserIsAdmin, AdminRouter);
-router.use('/user', ensureLoggedInMiddleware, UserRouter);
+router.use('/admins', ensureLoggedInMiddleware, ensureUserIsAdmin, AdminRouter);
+router.use('/users', ensureLoggedInMiddleware, UserRouter);
 
 export default router;
