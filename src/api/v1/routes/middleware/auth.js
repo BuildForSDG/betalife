@@ -1,14 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-import {
-  session,
-  setLoggedInUser,
-  getLoggedInUser,
-  setUserIsAdmin,
-  setUserIsSponsor,
-  setUserIsOrganiser,
-  setUserIsSuperAdmin
-} from '../../stores/session';
+import { session, setLoggedInUser, getLoggedInUser } from '../../stores/session';
 
 function getToken(req) {
   let token;
@@ -75,7 +67,6 @@ export function ensureUserIsAdmin(req, res, next) {
   }
 
   if (payload.role === 'ADMIN' || payload.role === 'SUPER_ADMIN') {
-    setUserIsAdmin(payload);
     next();
     return;
   }
@@ -91,13 +82,12 @@ export function ensureUserIsSponsor(req, res, next) {
     return;
   }
 
-  if (payload.role !== 'SPONSOR') {
-    res.status(401).json({ message: 'Not Authorized' });
+  if (payload.role === 'SPONSOR') {
+    next();
     return;
   }
 
-  setUserIsSponsor(payload);
-  next();
+  res.status(401).json({ message: 'Not Authorized' });
 }
 
 export function ensureUserIsOrganiser(req, res, next) {
@@ -108,13 +98,12 @@ export function ensureUserIsOrganiser(req, res, next) {
     return;
   }
 
-  if (payload.role !== 'ORGANISER') {
-    res.status(401).json({ message: 'Not Authorized' });
+  if (payload.role === 'ORGANISER') {
+    next();
     return;
   }
 
-  setUserIsOrganiser(payload);
-  next();
+  res.status(401).json({ message: 'Not Authorized' });
 }
 
 export function ensureUserIsSuperAdmin(req, res, next) {
@@ -125,11 +114,10 @@ export function ensureUserIsSuperAdmin(req, res, next) {
     return;
   }
 
-  if (payload.role !== 'SUPER_ADMIN') {
-    res.status(401).json({ message: 'Not Authorized' });
+  if (payload.role === 'SUPER_ADMIN') {
+    next();
     return;
   }
 
-  setUserIsSuperAdmin(payload);
-  next();
+  res.status(401).json({ message: 'Not Authorized' });
 }
