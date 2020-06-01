@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import validate from 'uuid-validate';
 
 import {
   session,
@@ -26,16 +25,12 @@ function getToken(req) {
 
     if (/^Bearer$/i.test(scheme)) {
       token = credentials;
+    } else {
+      return null;
     }
   }
 
-  const isValidUUID = validate(token, 4);
-
-  if (isValidUUID) {
-    return token;
-  }
-
-  return null;
+  return token;
 }
 
 export function ensureLoggedInMiddleware(req, res, next) {
@@ -79,13 +74,13 @@ export function ensureUserIsAdmin(req, res, next) {
     return;
   }
 
-  if (payload.role !== 'ADMIN') {
-    res.status(401).json({ message: 'Not Authorized' });
+  if (payload.role === 'ADMIN' || payload.role === 'SUPER_ADMIN') {
+    setUserIsAdmin(payload);
+    next();
     return;
   }
 
-  setUserIsAdmin(payload);
-  next();
+  res.status(401).json({ message: 'Not Authorized' });
 }
 
 export function ensureUserIsSponsor(req, res, next) {
