@@ -15,6 +15,7 @@ export const Event = sequelize.define(
     description: DataTypes.TEXT,
     category: { type: DataTypes.ENUM(['free', 'paid']), allowNull: false },
     fee: DataTypes.STRING,
+    organiser: { type: DataTypes.UUIDV4(), allowNull: false },
     registerStart: { type: DataTypes.DATE, field: 'register_start' },
     registerEnd: { type: DataTypes.DATE, field: 'register_end' },
     startDate: { type: DataTypes.DATE, field: 'start_date' },
