@@ -19,7 +19,7 @@ export const User = sequelize.define(
       field: 'email_verified',
       defaultValue: 0
     },
-    password: { type: DataTypes.STRING, unique: true },
+    password: { type: DataTypes.STRING },
     phone: DataTypes.STRING,
     phoneVerified: {
       type: DataTypes.INTEGER,
