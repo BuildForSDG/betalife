@@ -6,6 +6,9 @@ const { url, ...config } = envConfigs[env];
 
 export const sequelize = new Sequelize(url, {
   sync: { force: false },
+  seederStorage: 'json',
+  seederStoragePath: 'sequelizeData.json',
+  seederStorageTableName: 'sequelize_data',
   pool: {
     max: 5,
     min: 0,
