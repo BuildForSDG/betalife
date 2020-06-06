@@ -3,11 +3,11 @@ const { v4: uuid } = require('uuid');
 module.exports = {
   up: queryInterface => {
     return queryInterface.bulkInsert(
-      'super_admins',
+      'sponsors',
       [
         {
           id: uuid(),
-          user_id: '97e5902e-05d4-4662-9de6-6328b6c20aca',
+          user_id: '16352ad4-6a21-405d-a1d0-821a80c085eb',
           createdAt: new Date(),
           updatedAt: new Date()
         }
@@ -17,6 +17,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.bulkDelete('super_admins', null, {});
+    return queryInterface.bulkDelete('sponsors', null, {});
   }
 };
