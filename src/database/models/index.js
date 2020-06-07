@@ -26,6 +26,8 @@ models.Permission = Permission;
 models.Message = Message;
 models.Skill = Skill;
 models.Subscription = Subscription;
+models.EventUser = EventUser;
+models.SponsorEvent = SponsorEvent;
 
 // One to One relationships
 User.hasOne(Admin);
