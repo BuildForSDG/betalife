@@ -16,3 +16,7 @@ export const EventSchema = Joi.object().keys({
   contactEmail: Joi.string().min(2).required(),
   contactPhone: Joi.string().min(2)
 });
+
+export const SponsorEventSchema = Joi.object().keys({
+  request: Joi.string().min(5).required()
+});
