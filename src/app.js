@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import * as Sentry from '@sentry/node';
 import cors from 'cors';
 import compression from 'compression';
@@ -9,6 +10,21 @@ import api from './api';
 import { sequelize } from './database/config';
 
 const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, DELETE, PATCH, OPTIONS'
+  );
+  next();
+});
+
+app.use(bodyParser.json());
 
 Sentry.init({ dsn: process.env.SENTRY_DSN });
 
